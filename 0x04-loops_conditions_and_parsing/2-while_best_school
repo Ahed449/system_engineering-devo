@@ -1,4 +1,8 @@
-chmod +x 2-while_best_school
-git add 2-while_best_school
-git commit -m "Add while loop script"
-git push
+#!/usr/bin/env bash
+# This script prints "Best School" 10 times using a while loop
+
+i=1
+while [ "$i" -le 10 ]; do
+  echo "Best School"
+  i=$((i + 1))
+done
