@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Display all running processes in a tree format with user, PID, CPU/memory usage, and command
 
-ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd --forest
+ps -ef --forest
