@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script runs forever and ignores SIGTERM by printing a message
 
-# Trap SIGTERM signal and print a custom message
+# Trap SIGTERM signal and print a custom message with a newline
 trap 'echo "I am invincible!!!"' SIGTERM
 
 # Infinite loop
