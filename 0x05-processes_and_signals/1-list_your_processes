@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
+# This script lists all processes for all users, including those without a TTY, in a user-friendly hierarchical format.
 
-# Script to display all processes for all users, including those without a TTY,
-# in a clear format, with a hierarchical view showing Parent/Child relationships.
+set -Eeuo pipefail
 
 if ps -eo pid --forest >/dev/null 2>&1; then
   ps -eo user:18,pid,ppid,%cpu,%mem,tty,start,time,cmd --forest
