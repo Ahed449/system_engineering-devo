@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
-# This script lists all processes for all users, including those without a TTY, in a user-friendly hierarchical format.
+# This script lists all processes for all users, including those without a TTY, in a hierarchical format (USER and CMD only).
 
 set -Eeuo pipefail
 
-if ps -eo pid --forest >/dev/null 2>&1; then
-  ps -eo user:18,pid,ppid,%cpu,%mem,tty,start,time,cmd --forest
+# Show processes in required format: USER and CMD, for all processes
+if ps -eo user,cmd --forest >/dev/null 2>&1; then
+  ps -eo user,cmd --forest
   exit 0
 fi
 
+# Fallback if --forest not available
 if command -v pstree >/dev/null 2>&1; then
-  echo "Note: ps --forest not available; showing pstree first, then a flat ps list." >&2
   pstree -apu
-  echo
-  ps -eo user:18,pid,ppid,%cpu,%mem,tty,start,time,cmd
   exit 0
 fi
 
