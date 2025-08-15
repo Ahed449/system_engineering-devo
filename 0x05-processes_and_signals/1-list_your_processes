@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-# This script lists all processes for all users, including those without a TTY, in a hierarchical format (USER and CMD only).
+# This script lists all processes in a user-oriented hierarchical format.
 
-set -Eeuo pipefail
-
-# Show processes in required format: USER and CMD, for all processes
-if ps -eo user,cmd --forest >/dev/null 2>&1; then
-  ps -eo user,cmd --forest
-  exit 0
-fi
-
-# Fallback if --forest not available
-if command -v pstree >/dev/null 2>&1; then
-  pstree -apu
-  exit 0
-fi
-
-echo "Neither 'ps --forest' nor 'pstree' is available. Please install 'procps' or 'pstree'." >&2
-exit 1
+ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
